@@ -14,9 +14,8 @@ namespace PublicationsDatabase
             get { return _publicationType; }
             set { _publicationType = value; }
         }
+        
 
-
-        // Authors;
 
         private string _title;
         public string Title
@@ -25,6 +24,13 @@ namespace PublicationsDatabase
             set { _title = value; }
         }
 
+
+        private string _author;
+        public string Author
+        {
+            get { return _author; }
+            set { _author = value; }
+        }
 
         private int _citedReferences;
         public int CitedReferences
@@ -63,10 +69,16 @@ namespace PublicationsDatabase
             set { _publishYear = value; }
         }
 
+        public string Info
+        {
+            get { return $"{_publicationType} - {_author} - {_title} - {_citedReferences} - {_timesCited}\n{_ISSN_ISBN} - {_publishYear}"; }
+        }
 
-        public Publication(string publicationType,  string title, int citedReferences, int timesCited, string issn_issbn, int publishYear )
+
+        public Publication(string publicationType, string author, string title, int citedReferences, int timesCited, string issn_issbn, int publishYear )
         {
             _publicationType = publicationType;
+            _author = author;
             _title = title;
             _citedReferences = citedReferences;
             //_citedReferencesCount = citedReferencesCount;

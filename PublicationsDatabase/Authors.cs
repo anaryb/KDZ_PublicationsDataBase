@@ -8,8 +8,8 @@ namespace PublicationsDatabase
 {
     public class Authors
     {
-        public string _authorName;
-        public string AuthorName
+        static string _authorName;
+        static string AuthorName
         {
             get { return _authorName; }
             set { _authorName = value; }
@@ -29,6 +29,10 @@ namespace PublicationsDatabase
             set { _authorEmail = value; }
         }
 
+        public Authors(string authorName)
+        {
+            _authorName = authorName;
+        }
         public Authors(string authorName, string authorJobAdress, string authorEmail)
         {
             _authorName = authorName;

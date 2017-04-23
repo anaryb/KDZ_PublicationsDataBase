@@ -55,8 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AllPublicationsWindow.xaml.cs">
+      <DependentUpon>AllPublicationsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Authors.cs" />
     <Compile Include="Publication.cs" />
+    <Page Include="AllPublicationsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewPublicationWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

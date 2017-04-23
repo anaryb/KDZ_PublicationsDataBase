@@ -1,0 +1,16 @@
+﻿<Window x:Name="Все_публикации" x:Class="PublicationsDatabase.AllPublicationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        SizeToContent="WidthAndHeight"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PublicationsDatabase"
+        mc:Ignorable="d"
+        Title="Все публикации" Height="353.975" Width="519.665">
+    <Grid>
+        <ListBox x:Name="listBoxPublications" DisplayMemberPath="Info" HorizontalAlignment="Left" Height="249" Margin="22,10,0,0" VerticalAlignment="Top" Width="454" SelectionChanged="listBoxPublications_SelectionChanged"/>
+        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Height="50" Margin="22,264,0,0" VerticalAlignment="Top" Width="143" Click="buttonAdd_Click"/>
+        <Button x:Name="buttonDelete" Content="Удалить" HorizontalAlignment="Left" Height="50" Margin="184,264,0,0" VerticalAlignment="Top" Width="145" Click="buttonDelete_Click"/>
+
+    </Grid>
+</Window>
