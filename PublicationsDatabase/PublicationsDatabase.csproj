@@ -59,7 +59,8 @@
       <DependentUpon>AllPublicationsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Authors.cs" />
-    <Compile Include="Publication.cs" />
+    <Compile Include="Publications.cs" />
+    <Compile Include="Publishers.cs" />
     <Page Include="AllPublicationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

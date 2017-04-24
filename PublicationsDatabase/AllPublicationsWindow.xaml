@@ -8,9 +8,9 @@
         mc:Ignorable="d"
         Title="Все публикации" Height="353.975" Width="519.665">
     <Grid>
-        <ListBox x:Name="listBoxPublications" DisplayMemberPath="Info" HorizontalAlignment="Left" Height="249" Margin="22,10,0,0" VerticalAlignment="Top" Width="454" SelectionChanged="listBoxPublications_SelectionChanged"/>
-        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Height="50" Margin="22,264,0,0" VerticalAlignment="Top" Width="143" Click="buttonAdd_Click"/>
-        <Button x:Name="buttonDelete" Content="Удалить" HorizontalAlignment="Left" Height="50" Margin="184,264,0,0" VerticalAlignment="Top" Width="145" Click="buttonDelete_Click"/>
+        <ListBox x:Name="listBoxPublications" DisplayMemberPath="Info" Margin="22,10,18,56" SelectionChanged="listBoxPublications_SelectionChanged" IsSynchronizedWithCurrentItem="True" SelectedIndex="2"/>
+        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Margin="10 0 0 10" VerticalAlignment="Bottom" Width="143" Click="buttonAdd_Click" VerticalContentAlignment="Center" Height="25"/>
+        <Button x:Name="buttonDelete" Content="Удалить" IsEnabled="False" HorizontalAlignment="Left" Margin="170 0 0 10" Width="148" Click="buttonDelete_Click" Height="25" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>

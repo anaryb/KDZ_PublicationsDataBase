@@ -15,11 +15,11 @@ namespace PublicationsDatabase
         List<Publication> _publications = new List<Publication>();
         List<Authors> _authors = new List<Authors>();*/
 
-        List<Publication> _publications = new List<Publication>();
+        List<Publications> _publications = new List<Publications>();
         public AllPublicationsWindow()
         {
             InitializeComponent();
-            _publications.Add(new Publication("J - Journal", "dfsdfs0", "sdfsdfsf", 6, 7, "5667", 2016));
+            _publications.Add(new Publications("J - Journal", "asdasd", "sdfsdfsf", 6, 7, "5667", 2016));
             RefreshListBox();
         }
 

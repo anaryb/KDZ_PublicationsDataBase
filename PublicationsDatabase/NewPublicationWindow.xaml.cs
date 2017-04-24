@@ -14,9 +14,9 @@ namespace PublicationsDatabase
              InitializeComponent();
          }
 
-        Publication _newPublication;
+        Publications _newPublication;
 
-        public Publication NewPublication
+        public Publications NewPublication
         {
             get { return _newPublication; }
         }
@@ -72,7 +72,7 @@ namespace PublicationsDatabase
             }
 
 
-            _newPublication = new Publication(comboBoxPublicationType.Text, textBoxAuthors.Text, textBoxTitle.Text, citedreferences, timescited, textBoxISSN_ISBN.Text, publishYear);
+            _newPublication = new Publications(comboBoxPublicationType.Text, textBoxAuthors.Text, textBoxTitle.Text, citedreferences, timescited, textBoxISSN_ISBN.Text, publishYear);
 
             // Accept the dialog and return the dialog result
             this.DialogResult = true;
