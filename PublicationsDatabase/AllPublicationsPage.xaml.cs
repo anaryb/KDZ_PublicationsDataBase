@@ -10,34 +10,34 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace PublicationsDatabase
 {
     /// <summary>
-    /// Логика взаимодействия для NewPublicationWindow.xaml
+    /// Логика взаимодействия для AllPublicationsPage.xaml
     /// </summary>
-    public partial class NewPublicationWindow : Window
+    public partial class AllPublicationsPage : Page
     {
-        public NewPublicationWindow()
+        public AllPublicationsPage()
         {
-            
             InitializeComponent();
         }
 
-        private void ButAboutAuthor(object sender, RoutedEventArgs e)
+        private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new NewPublAuthor();
+
         }
 
-        private void ButAboutPubl(object sender, RoutedEventArgs e)
+        private void buttonDelete_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new NewPublAboutPubl();
+
         }
 
-        private void ButAboutPublisher(object sender, RoutedEventArgs e)
+        private void listBoxPublications_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Main.Content = new NewPublAboutPublisher();
+            
         }
 
     }

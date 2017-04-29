@@ -35,12 +35,7 @@ namespace PublicationsDatabase
             set { _citedReferences = value; }
         }
 
-/*        private int _citedReferencesCount;
-        public int CitedReferencesCount
-        {
-            get { return _citedReferencesCount; }
-            set { _citedReferencesCount = value; }
-        } */
+
 
         private int _timesCited;
         public int TimesCited
@@ -65,15 +60,9 @@ namespace PublicationsDatabase
             set { _publishYear = value; }
         }
 
-        /* private Authors _auth;
-         public Authors Auth
-         {
-             get { return _auth; }
-             set { _auth = value; }
-         }*/
 
-        private string _author;
-        public string Author
+        private Authors _author;
+        public Authors Author
         {
             get { return _author; }
             set { _author = value; }
@@ -81,14 +70,14 @@ namespace PublicationsDatabase
 
         public string Info
         {
-            get { return $"{_publicationType} - {_author} - {_title} - {_citedReferences} - {_timesCited}\n{_ISSN_ISBN} - {_publishYear}"; }
+            get { return $"{_publicationType} - {_author.AuthorName} - {_title} - {_citedReferences} - {_timesCited}\n{_ISSN_ISBN} - {_publishYear}"; }
         }
 
 
-        public Publications(string publicationType, string author, string title, int citedReferences, int timesCited, string issn_issbn, int publishYear )
+
+        public Publications(string publicationType, string title, int citedReferences, int timesCited, string issn_issbn, int publishYear )
         {
             _publicationType = publicationType;
-            _author = author;
             _title = title;
             _citedReferences = citedReferences;
             //_citedReferencesCount = citedReferencesCount;
@@ -97,6 +86,7 @@ namespace PublicationsDatabase
             _publishYear = publishYear;
             
         }
+
        
        
 
