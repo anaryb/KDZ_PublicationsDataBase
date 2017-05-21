@@ -25,20 +25,19 @@ namespace PublicationsDatabase
             InitializeComponent();
         }
 
-        private void ButAboutAuthor(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new NewPublAuthor();
-        }
-
-        private void ButAboutPubl(object sender, RoutedEventArgs e)
+        private void PublHyperLink_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new NewPublAboutPubl();
         }
 
-        private void ButAboutPublisher(object sender, RoutedEventArgs e)
+        private void PublisherHyperLink_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new NewPublAboutPublisher();
         }
 
+        private void AuthorHyperLink_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new NewPublAboutAuthor();
+        }
     }
 }

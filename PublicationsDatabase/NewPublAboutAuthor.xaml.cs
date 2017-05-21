@@ -18,11 +18,45 @@ namespace PublicationsDatabase
     /// <summary>
     /// Логика взаимодействия для NewPublAuthor.xaml
     /// </summary>
-    public partial class NewPublAuthor : Page
+    public partial class NewPublAboutAuthor : Page
     {
-        public NewPublAuthor()
+        List<Authors> _authors = new List<Authors>();
+        Authors _author;
+        public NewPublAboutAuthor()
         {
             InitializeComponent();
+            authorName.Focus();
         }
+
+        private void AuthorPublNext_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(authorName.Text))
+            {
+                MessageBox.Show("Необходимо ввести ФИО Автора");
+                authorName.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(JobAddress.Text))
+            {
+                MessageBox.Show("Необходимо ввести место работы");
+                JobAddress.Focus();
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(AuthEmail.Text))
+            {
+                MessageBox.Show("Необходимо ввести электронную почту");
+                AuthEmail.Focus();
+                return;
+            }
+             _author = new Authors(authorName.Text, JobAddress.Text, AuthEmail.Text);
+            Pages.NewPublAboutPubl.NewAuthorAdded(_author);
+
+            NavigationService.Navigate(Pages.NewPublAboutPublisher);
+        }
+
+
+
     }
 }

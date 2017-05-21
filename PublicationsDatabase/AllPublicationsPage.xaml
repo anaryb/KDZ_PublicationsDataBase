@@ -5,12 +5,108 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PublicationsDatabase"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-      Title="AllPublicationsPage" Height="353.975" Width="519.665">
+      d:DesignHeight="700" d:DesignWidth="700"
+      Title="AllPublicationsPage">
 
     <Grid Background="White">
-        <ListBox x:Name="listBoxPublications" DisplayMemberPath="Info" Margin="22,10,18,56" SelectionChanged="listBoxPublications_SelectionChanged" IsSynchronizedWithCurrentItem="True" SelectedIndex="2"/>
-        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Margin="10 0 0 10" VerticalAlignment="Bottom" Width="143" Click="buttonAdd_Click" VerticalContentAlignment="Center" Height="25"/>
-        <Button x:Name="buttonDelete" Content="Удалить" IsEnabled="False" HorizontalAlignment="Left" Margin="170 0 0 10" Width="148" Click="buttonDelete_Click" Height="25" VerticalAlignment="Bottom"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <ListView Name="publicationsList" Margin="5" Background="LightBlue">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Тип публикации" Width="100" DisplayMemberBinding="{Binding Path=PublicationType }"></GridViewColumn>
+                            <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Path=Title}"></GridViewColumn>
+                            <GridViewColumn Header="Количество ссылок" DisplayMemberBinding="{Binding Path=CitedReferences}"></GridViewColumn>
+                            <GridViewColumn Header="Сколько раз ссылались" DisplayMemberBinding="{Binding Path=TimesCited}"></GridViewColumn>
+                            <GridViewColumn Header="Год издания" DisplayMemberBinding="{Binding Path=PublishYear}"></GridViewColumn>
+                            <GridViewColumn Header="ISSN/ISBN" DisplayMemberBinding="{Binding Path=ISSN_ISBN}"></GridViewColumn>
+    
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+
+            <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="5,2,5,10">
+                <Button x:Name="GetPublicationList" Margin="2,0,0,0"  Padding="2" Content="Получить список публикаций" Click="GetPublicationList_Click"/>
+                <Button x:Name="DeletePublicationList" Margin="2,0,0,0"  Padding="2" Content="Удалить" Click="DeletePublicationList_Click"/>
+                <Button x:Name ="AddNewP" Margin="2,0,0,0"  Padding="2" Content="Добавить" Click="AddNewP_Click"/>
+            </StackPanel>
+        </Grid>
+
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeBehavior="PreviousAndNext" Height="5"/>
+
+        <Border Grid.Row="2" Padding="7" Margin="7" Background="LightSteelBlue">
+            <Grid  Name="GridPublicationDetails" DataContext="{Binding ElementName=publicationsList, Path=SelectedItem}" Margin="1,0,-1,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="56*"></ColumnDefinition>
+                    <ColumnDefinition Width="56*"></ColumnDefinition>
+                    <ColumnDefinition Width="56*"></ColumnDefinition>
+                    <ColumnDefinition Width="56*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Margin="79,9,79,10" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16">Информация oб Авторе</TextBlock>
+                
+                <TextBlock Margin="49,12,34.166,12" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">ФИО Автора</TextBlock>
+                <TextBox Margin="5" Grid.Row="1" Grid.Column="1" DataContext="" Text="{Binding AuthorName {Source Author}}"></TextBox>
+                
+                <TextBlock Margin="45,12,30.166,12" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Адрес работы</TextBlock>
+                <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding Path=ModelNumber}"></TextBox>
+                
+                <TextBlock Margin="31,12,15.166,12" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Электронная почта</TextBlock>
+                <TextBox Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding Path=Cost}"></TextBox>
+
+                <TextBlock Margin="57,10,56,8" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="22" TextAlignment="Center">Информация oб Издательстве</TextBlock>
+                <TextBlock Margin="47,12,31.166,12" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Издательство</TextBlock>
+                <TextBox Margin="5" Grid.Row="5" Grid.Column="1" Text="{Binding Path=Publisher}"></TextBox>
+                
+                <TextBlock Margin="30,12,14.166,12" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Город издательства</TextBlock>
+                <TextBox Margin="5" Grid.Row="6" Grid.Column="1" Text="{Binding Path=AuthorName}"></TextBox>
+                
+                <TextBlock Margin="30,12,15.166,11" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Адрес издательства</TextBlock>
+                <TextBox Margin="5" Grid.Row="7" Grid.Column="1" Text="{Binding Path=AuthorName}"></TextBox>
+                
+
+                <TextBlock Margin="66,9,67,9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="22" TextAlignment="Center" Grid.Column="2">Информация o публикации</TextBlock>
+                <TextBlock Margin="38,12" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Тип Публикации</TextBlock>
+                <ComboBox Margin="5" Grid.Row="1" Grid.Column="4" Text="{Binding Path=PublicationType}"></ComboBox>
+                
+                <TextBlock Margin="22,12" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Название Публикации</TextBlock>
+                <TextBox Margin="5" Grid.Row="2" Grid.Column="4" Text="{Binding Path=Title}"></TextBox>
+                
+                <TextBlock Margin="31,12,30,12" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Количество ссылок</TextBlock>
+                <TextBox Margin="5" Grid.Row="3" Grid.Column="4" Text="{Binding Path=CitedReferences}"></TextBox>
+                
+                <TextBlock Margin="20,12" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Сколько раз ссылались</TextBlock>
+                <TextBox Margin="5" Grid.Row="4" Grid.Column="4" Text="{Binding Path=TimesCited}"></TextBox>
+                
+                <TextBlock Margin="21,12,20,12" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">ISSN/ISBN Публикации</TextBlock>
+                <TextBox Margin="5" Grid.Row="5" Grid.Column="4" Text="{Binding Path=ISSN_ISBN}"></TextBox>
+                
+                <TextBlock Margin="50,12" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Год издания</TextBlock>
+                <TextBox Margin="5" Grid.Row="6" Grid.Column="4" Text="{Binding Path=PublishYear}"></TextBox>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

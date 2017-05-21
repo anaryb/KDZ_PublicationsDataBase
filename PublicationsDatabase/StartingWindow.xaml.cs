@@ -24,22 +24,23 @@ namespace PublicationsDatabase
             InitializeComponent();
         }
 
-
-        private void ButtonClickAllPublPage(object sender, RoutedEventArgs e)
+        private void buttonReg_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new AllPublicationsPage();
+            var window =  new RegAuthWindow();
+            window.Show();
+            window.Main.Navigate(new RegistrationPage());
+            this.Close();
+
+
         }
 
-        private void ButtonClickAddNewPubl(object sender, RoutedEventArgs e)
+        private void buttonAuth_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
-            NewPublicationWindow newpubl = new NewPublicationWindow();
-            newpubl.Show();
-          
+            
+            var window = new RegAuthWindow();
+            window.Show();
+            window.Main.Navigate(new AuthPage());
+            this.Close();            
         }
-
-
-
-
     }
 }

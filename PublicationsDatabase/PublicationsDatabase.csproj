@@ -59,6 +59,15 @@
       <DependentUpon>AllPublicationsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Authors.cs" />
+    <Compile Include="AuthPage.xaml.cs">
+      <DependentUpon>AuthPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainDatabasePage.xaml.cs">
+      <DependentUpon>MainDatabasePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainDatabaseWindow.xaml.cs">
+      <DependentUpon>MainDatabaseWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewPublAboutPubl.xaml.cs">
       <DependentUpon>NewPublAboutPubl.xaml</DependentUpon>
     </Compile>
@@ -68,22 +77,39 @@
     <Compile Include="NewPublAboutAuthor.xaml.cs">
       <DependentUpon>NewPublAboutAuthor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewPublicationWindow.xaml.cs">
-      <DependentUpon>NewPublicationWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Pages.cs" />
     <Compile Include="Publications.cs" />
     <Compile Include="Publishers.cs" />
+    <Compile Include="RegAuthWindow.xaml.cs">
+      <DependentUpon>RegAuthWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StartingWindow.xaml.cs">
       <DependentUpon>StartingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Users.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Page Include="AllPublicationsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="AuthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainDatabasePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainDatabaseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewPublAboutPubl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,7 +122,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewPublicationWindow.xaml">
+    <Page Include="RegAuthWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RegistrationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

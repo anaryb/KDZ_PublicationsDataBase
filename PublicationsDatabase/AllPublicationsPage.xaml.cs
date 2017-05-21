@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 namespace PublicationsDatabase
 {
@@ -20,25 +23,59 @@ namespace PublicationsDatabase
     /// </summary>
     public partial class AllPublicationsPage : Page
     {
+        List<Publications> _pubs = new List<Publications>();
+        Publications pub;
+
+        List<Authors> _auth = new List<Authors>();
+        Authors a;
+
+        List<Publishers> _publish = new List<Publishers>();
+        Publishers publishs;
         public AllPublicationsPage()
         {
             InitializeComponent();
         }
-
-        private void buttonAdd_Click(object sender, RoutedEventArgs e)
+        
+        private void GetPublicationList_Click(object sender, RoutedEventArgs e)
         {
+             IFormatter formatterPub = new BinaryFormatter();
+             Stream streamPub = new FileStream("Publications.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+             Publications objPub = (Publications)formatterPub.Deserialize(streamPub);
+             streamPub.Close();
+             pub = objPub;
+             _pubs.Add(pub);
+
+            IFormatter formatterAuth = new BinaryFormatter();
+            Stream streamAuth = new FileStream("Authors.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+            Authors objAuth = (Authors)formatterAuth.Deserialize(streamAuth);
+            streamAuth.Close();
+            a = objAuth;
+            _auth.Add(a);
+
+            IFormatter formatterPublish = new BinaryFormatter();
+            Stream streamPublish = new FileStream("Publishers.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+            Publishers objPublish = (Publishers)formatterAuth.Deserialize(streamPublish);
+            streamPublish.Close();
+            publishs = objPublish;
+            _publish.Add(publishs);
+
+
+
 
         }
 
-        private void buttonDelete_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void AddNewP_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(Pages.NewPublAboutAuthor);
         }
 
-        private void listBoxPublications_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DeletePublicationList_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
+            _pubs.Remove((Publications)publicationsList.SelectedItem);
+            publicationsList.ItemsSource = null;
+            publicationsList.ItemsSource = _pubs;
 
+        }
     }
 }

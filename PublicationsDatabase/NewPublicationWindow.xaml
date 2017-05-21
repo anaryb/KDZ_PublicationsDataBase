@@ -8,12 +8,13 @@
         Title="New Publication" Height="350" Width="500">
     <Grid>
         <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Top" HorizontalAlignment="Center" >
-            <Button x:Name="ButtonAboutAuthor" Content="Об авторе" MinWidth="100" Margin="10,0,0,0" Click="ButAboutAuthor"/>
-            <Button x:Name="ButtonAboutPublication" Content="О публикации" MinWidth="100" Margin="10,0,0,0" Click="ButAboutPubl"/>
-            <Button x:Name="ButtonAboutPublisher" Content="Об издательстве" MinWidth="100" Margin="10,0,0,0" Click="ButAboutPublisher"/>
+            <TextBlock FontSize="18"  Margin="10,6,0,5" VerticalAlignment="Center" HorizontalAlignment="Center"><Hyperlink x:Name="AuthorHyperLink" NavigateUri="NewPublAboutAuthor.xaml" Click="AuthorHyperLink_Click"><Run Text="Автор"/></Hyperlink></TextBlock>
+            <TextBlock FontSize="18" Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"><Hyperlink x:Name="PublHyperLink" NavigateUri="NewPublAboutPubl.xaml" Click="PublHyperLink_Click"><Run Text="Публикация"/></Hyperlink></TextBlock>
+            <TextBlock FontSize="18"  Margin="10,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"><Hyperlink x:Name="PublisherHyperLink" NavigateUri="NewPublAboutPublisher.xaml" Click="PublisherHyperLink_Click"><Run Text="Издательство"/></Hyperlink></TextBlock>
+
         </StackPanel>
 
-        <Frame x:Name="Main" Margin="0,35,0,0"/>
-        
+        <Frame x:Name="Main" Margin="0,35,0,0" NavigationUIVisibility="Hidden"/>
+
     </Grid>
 </Window>

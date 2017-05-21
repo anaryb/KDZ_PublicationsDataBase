@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace PublicationsDatabase
 {
-    class Publishers
+    [Serializable]
+    public class Publishers
     {
         private string _publisher;
         public string Publisher
@@ -29,5 +30,11 @@ namespace PublicationsDatabase
             set { _publisherAddress = value; }
         }
 
+        public Publishers(string publisher, string publisherCity, string publisherAddress)
+        {
+            _publisher = publisher;
+            _publisherCity = publisherCity;
+            _publisherAddress = publisherAddress;
+        }
     }
 }

@@ -5,16 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PublicationsDatabase"
         mc:Ignorable="d"
-        Title="StartingWindow" Height="350" Width="500">
+        Title="StartingWindow" MinHeight="400" MinWidth="550">
+
     <Grid>
-        <StackPanel Orientation="Horizontal" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Center" >
-            <Button x:Name="ButtonAllPublications" Content="Вывести список всех публикаций" MinWidth="100" Margin="10,0,0,5" Click="ButtonClickAllPublPage"  Width="190"/>
-            <Button x:Name="ButtonAddPublication" Content="Добавить новую публикацию" MinWidth="100" Margin="10,0,0,5" Click="ButtonClickAddNewPubl" Width="190"/>
+        <StackPanel Orientation="Vertical" Height="100" VerticalAlignment="Bottom" HorizontalAlignment="Center" >
+            <Button x:Name="buttonReg" Content="Зарегистрироваться" MinWidth="100" Margin="10,0,0,5"  Width="190" Height="40" Click="buttonReg_Click"/>
+            <Button x:Name="buttonAuth" Content  ="Авторизация"  MinWidth="100" Margin="10,0,0,5" Width="190" Height="40" Click="buttonAuth_Click"/>
         </StackPanel>
 
-        <Frame x:Name="Main" Margin="0,0,0,35"/>
-        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextDecorations="{x:Null}" TextAlignment="Center"><Run Text="Добро пожаловать"/><LineBreak/><Run Text="в информационно-аналитическую систему"/><LineBreak/><Run Text="учета научных публикаций"/></TextBlock>
-        <TextBlock FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="143,219,138,81" Width="211" TextAlignment="Center"> Выберите Ваши действия</TextBlock>
+        <Frame x:Name="Main" Margin="0,0,0,105"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextDecorations="{x:Null}" TextAlignment="Center" Margin="70,54,64,194"><Run Text="Добро пожаловать"/><LineBreak/><Run Text="в информационно-аналитическую систему"/><LineBreak/><Run Text="учета научных публикаций"/></TextBlock>
+        <TextBlock FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="141,131,140,169" Width="211" TextAlignment="Center"> Выберите Ваши действия</TextBlock>
+        
 
     </Grid>
 </Window>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PublicationsDatabase
 {
+    [Serializable]
     public class Publications
     {
         private string _publicationType;
@@ -23,9 +24,6 @@ namespace PublicationsDatabase
             get { return _title; }
             set { _title = value; }
         }
-
-        //Author
-
         
 
         private int _citedReferences;
@@ -44,7 +42,21 @@ namespace PublicationsDatabase
             set { _timesCited = value; }
         }
 
-        //Publisher 
+        private Authors _author;
+        public Authors Author
+        {
+            get { return _author; }
+            set { _author = value; }
+        }
+
+        private Publishers _publisher;
+        public Publishers Publisher
+        {
+            get { return _publisher; }
+            set { _publisher = value; }
+        }
+
+
 
         private string _ISSN_ISBN;
         public string ISSN_ISBN
@@ -61,26 +73,11 @@ namespace PublicationsDatabase
         }
 
 
-        private Authors _author;
-        public Authors Author
-        {
-            get { return _author; }
-            set { _author = value; }
-        }
-
-        public string Info
-        {
-            get { return $"{_publicationType} - {_author.AuthorName} - {_title} - {_citedReferences} - {_timesCited}\n{_ISSN_ISBN} - {_publishYear}"; }
-        }
-
-
-
         public Publications(string publicationType, string title, int citedReferences, int timesCited, string issn_issbn, int publishYear )
         {
             _publicationType = publicationType;
             _title = title;
             _citedReferences = citedReferences;
-            //_citedReferencesCount = citedReferencesCount;
             _timesCited = timesCited;
             _ISSN_ISBN = issn_issbn;
             _publishYear = publishYear;

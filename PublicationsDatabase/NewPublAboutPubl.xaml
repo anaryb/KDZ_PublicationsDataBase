@@ -5,31 +5,71 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PublicationsDatabase"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="300" d:DesignWidth="450"
       Title="NewPublAboutPubl" Height="300" Width="450">
 
-    <Grid Background="White" >
-        <Label x:Name="label" Content="Название" HorizontalAlignment="Left" Height="28" Margin="10,67,0,0" VerticalAlignment="Top" Width="80"/>
-        <Label x:Name="label2" Content="Год издания" HorizontalAlignment="Left" Height="35" Margin="10,246,0,0" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="textBoxPublishYear" HorizontalAlignment="Left" Height="35" Margin="91,246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
-       
-        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Height="35" Margin="290,241,0,0" VerticalAlignment="Top" Width="111" />
-        <Label x:Name="label3" Content="Тип публикации" HorizontalAlignment="Left" Height="29" Margin="10,10,0,0" VerticalAlignment="Top" Width="111"/>
-        <Label x:Name="label4" Content="Количество&#xD;&#xA; ссылок" HorizontalAlignment="Left" Height="39" Margin="10,127,0,0" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="textBoxCitedReferences" HorizontalAlignment="Left" Height="39" Margin="95,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
-        <Label x:Name="label5" Content="Сколько раз &#xD;&#xA;ссылались" HorizontalAlignment="Left" Height="39" Margin="229,129,0,0" VerticalAlignment="Top" Width="91"/>
-        <TextBox x:Name="textBoxTimesCited" HorizontalAlignment="Left" Height="39" Margin="325,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
-        <Label x:Name="label6" Content="ISSN/ISBN" HorizontalAlignment="Left" Height="28" Margin="10,196,0,0" VerticalAlignment="Top" Width="69"/>
-        <TextBox x:Name="textBoxISSN_ISBN" HorizontalAlignment="Left" Height="28" Margin="95,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
-        <TextBox x:Name="textBoxTitle" HorizontalAlignment="Left" Height="28" Margin="140,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
-        <ComboBox x:Name="comboBoxPublicationType" HorizontalAlignment="Left" Height="29" Margin="141,10,0,0" VerticalAlignment="Top" Width="300">
-            <TextBlock>J - Journal</TextBlock>
-            <TextBlock>B - Book</TextBlock>
-            <TextBlock>S - Series</TextBlock>
-            <TextBlock>P - Patent</TextBlock>
-        </ComboBox>
-        
-        <Label x:Name="label7" Content="DOI" HorizontalAlignment="Left" Height="28" Margin="237,196,0,0" VerticalAlignment="Top" Width="69"/>
-        <TextBox x:Name="textBoxDOI" HorizontalAlignment="Left" Height="28" Margin="322,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Margin="10" Grid.Row="0" Grid.Column="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Тип публикации</TextBlock>
+            <ComboBox x:Name="comboBoxPublicationType" Grid.Row="0" Grid.Column="1" MinWidth="100" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Width="280" Height="30">
+                <TextBlock>J - Journal</TextBlock>
+                <TextBlock>B - Book</TextBlock>
+                <TextBlock>S - Series</TextBlock>
+                <TextBlock>P - Patent</TextBlock>
+            </ComboBox>
+
+            <TextBlock  Margin="10" Grid.Row="1" Grid.Column="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">Название публикации</TextBlock>
+            <TextBox x:Name="textBoxTitle" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" MinWidth="100" Height="30" Margin="10" />
+        </Grid>
+
+        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeBehavior="PreviousAndNext" Height="5"/>
+
+        <Grid Grid.Row="2"  Margin="1,0,-1,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock  Margin="10" Grid.Row="0" Grid.Column="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" >Количество ссылок</TextBlock>
+            <TextBox x:Name="textBoxCitedReferences"  Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Margin="10"/>
+
+            <TextBlock  Margin="10" Grid.Row="0" Grid.Column="2" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" >Сколько раз ссылались</TextBlock>
+            <TextBox x:Name="textBoxTimesCited" Grid.Row="0" Grid.Column="3" TextWrapping="Wrap" Margin="10"/>
+
+            <TextBlock  Margin="10" Grid.Row="1" Grid.Column="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" >Год издания</TextBlock>
+            <TextBox x:Name="textBoxPublishYear" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Margin="10"/>
+
+            <TextBlock  Margin="10" Grid.Row="1" Grid.Column="2" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" >ISSN/ISBN</TextBlock>
+            <TextBox x:Name="textBoxISSN_ISBN" Grid.Row="1" Grid.Column="3" TextWrapping="Wrap" Margin="10"/>
+
+            <TextBlock  Margin="10" Grid.Row="2" Grid.Column="0" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" >DOI</TextBlock>
+            <TextBox x:Name="textBoxDOI" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="10"/>
+
+            <Button x:Name="AddOverallPublication" Content="Добавить" Grid.Row="2" Grid.Column="2" MinWidth="100" Height="30" Click="AddOverallPublication_Click" Grid.ColumnSpan="2" Margin="10,10,10,9" ></Button>
+
+        </Grid>
     </Grid>
 </Page>
