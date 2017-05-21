@@ -42,22 +42,6 @@ namespace PublicationsDatabase
             set { _timesCited = value; }
         }
 
-        private Authors _author;
-        public Authors Author
-        {
-            get { return _author; }
-            set { _author = value; }
-        }
-
-        private Publishers _publisher;
-        public Publishers Publisher
-        {
-            get { return _publisher; }
-            set { _publisher = value; }
-        }
-
-
-
         private string _ISSN_ISBN;
         public string ISSN_ISBN
         {
@@ -70,10 +54,52 @@ namespace PublicationsDatabase
         {
             get { return _publishYear; }
             set { _publishYear = value; }
+
         }
 
+        private string _authorName;
+        public string AuthorName
+        {
+            get { return _authorName; }
+            set { _authorName = value; }
+        }
 
-        public Publications(string publicationType, string title, int citedReferences, int timesCited, string issn_issbn, int publishYear )
+        public string _authorJobAdress;
+        public string AuthorAdress
+        {
+            get { return _authorJobAdress; }
+            set { _authorJobAdress = value; }
+        }
+
+        public string _authorEmail;
+        public string AuthorEmail
+        {
+            get { return _authorEmail; }
+            set { _authorEmail = value; }
+        }
+
+        private string _publisher;
+        public string Publisher
+        {
+            get { return _publisher; }
+            set { _publisher = value; }
+        }
+
+        private string _publisherCity;
+        public string PublisherCity
+        {
+            get { return _publisherCity; }
+            set { _publisherCity = value; }
+        }
+
+        private string _publisherAddress;
+        public string PublisherAddress
+        {
+            get { return _publisherAddress; }
+            set { _publisherAddress = value; }
+        }
+
+        public Publications(string publicationType, string title, string authorName, int citedReferences, int timesCited, int publishYear, string issn_issbn,  string authorJobAddress, string authorEmail, string publisher, string publisherCity, string publisherAddress )
         {
             _publicationType = publicationType;
             _title = title;
@@ -81,6 +107,13 @@ namespace PublicationsDatabase
             _timesCited = timesCited;
             _ISSN_ISBN = issn_issbn;
             _publishYear = publishYear;
+            _authorName = authorName;
+            _authorJobAdress = authorJobAddress;
+            _authorEmail = authorEmail;
+            _publisher = publisher;
+            _publisherCity = publisherCity;
+            _publisherAddress = publisherAddress;
+
             
         }
 

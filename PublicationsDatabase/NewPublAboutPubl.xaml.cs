@@ -105,13 +105,6 @@ namespace PublicationsDatabase
                 return;
             }
 
-
-
-            _publication = new Publications(comboBoxPublicationType.Text, textBoxTitle.Text, CitedReferences, TimesCited, textBoxISSN_ISBN.Text, PublishYear);
-            
-            
-           
-
             foreach (Authors a in _authors)
             {
                 _auth = a;
@@ -122,17 +115,41 @@ namespace PublicationsDatabase
                 _publish = p;
 
             }
-            SaveData();
+
+
+            _publication = new Publications(comboBoxPublicationType.Text, textBoxTitle.Text, _auth.AuthorName, CitedReferences, TimesCited, PublishYear, textBoxISSN_ISBN.Text, _auth.AuthorAdress, _auth.AuthorEmail, _publish.Publisher, _publish.PublisherCity, _publish.PublisherAddress);
+            _publications.Add(_publication); 
+            SaveDataPubl();
 
             NavigationService.Navigate(Pages.MainDatabasePage);
 
         }
-        private void SaveData()
+        private void SaveDataPubl()
         {
-            IFormatter formatterPublic = new BinaryFormatter();
-            Stream streamPublic = new FileStream("Publications.bin", FileMode.Append, FileAccess.Write, FileShare.None);
-            formatterPublic.Serialize(streamPublic, _publication);
-            streamPublic.Close();
+            using (FileStream fs = new FileStream("Publications.txt", FileMode.Append))
+            {
+                foreach (Publications publ in _publications)
+                {
+                    using (StreamWriter swpub = new StreamWriter(fs))
+                    {
+                        swpub.WriteLine($"{publ.PublicationType}:{publ.Title}:{publ.AuthorName}:{publ.CitedReferences}:{publ.TimesCited}:{publ.PublishYear}:{publ.ISSN_ISBN}:{publ.AuthorAdress}:{publ.AuthorEmail}:{publ.Publisher}:{publ.PublisherCity}:{publ.PublisherAddress}");
+                    }
+                }
+                
+            }
+
+            
+            /*IFormatter formatterPublic = new BinaryFormatter();
+            using (FileStream streamPublic = new FileStream("Publications.bin", FileMode.Append))
+            {
+                foreach (Publications publ in _publications)
+                {
+                    formatterPublic.Serialize(streamPublic, publ);
+                }
+                streamPublic.Close();
+            }
+
+
 
             IFormatter formatterAuth = new BinaryFormatter();
             Stream streamAuth = new FileStream("Authors.bin", FileMode.Append, FileAccess.Write, FileShare.None);
@@ -143,7 +160,7 @@ namespace PublicationsDatabase
             Stream streamPublisher = new FileStream("Publishers.bin", FileMode.Append, FileAccess.Write, FileShare.None);
             formatterPublisher.Serialize(streamPublisher, _publish);
             streamPublisher.Close();
-
+            */
         }
 
         public void NewAuthorAdded(Authors auth)

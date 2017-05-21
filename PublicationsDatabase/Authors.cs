@@ -30,15 +30,12 @@ namespace PublicationsDatabase
             set { _authorEmail = value; }
         }
 
-       
+
         public Authors(string authorName, string authorJobAdress, string authorEmail)
         {
             _authorName = authorName;
             _authorJobAdress = authorJobAdress;
             _authorEmail = authorEmail;
         }
-
-        
-
     }
 }

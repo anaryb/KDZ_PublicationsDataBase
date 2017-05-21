@@ -25,13 +25,18 @@
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
-                            <GridViewColumn Header="Тип публикации" Width="100" DisplayMemberBinding="{Binding Path=PublicationType }"></GridViewColumn>
-                            <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Path=Title}"></GridViewColumn>
-                            <GridViewColumn Header="Количество ссылок" DisplayMemberBinding="{Binding Path=CitedReferences}"></GridViewColumn>
-                            <GridViewColumn Header="Сколько раз ссылались" DisplayMemberBinding="{Binding Path=TimesCited}"></GridViewColumn>
-                            <GridViewColumn Header="Год издания" DisplayMemberBinding="{Binding Path=PublishYear}"></GridViewColumn>
+                            <GridViewColumn Header="Тип публикации" Width="Auto"  DisplayMemberBinding="{Binding Path=PublicationType}"></GridViewColumn>
+                            <GridViewColumn Header="Название" Width="Auto"  DisplayMemberBinding="{Binding Path=Title}"></GridViewColumn>
+                            <GridViewColumn Header="Автор" Width="Auto" DisplayMemberBinding="{Binding Path=AuthorName}"></GridViewColumn>
+                            <GridViewColumn Header="Количество ссылок" Width="Auto"  DisplayMemberBinding="{Binding Path=CitedReferences}"></GridViewColumn>
+                            <GridViewColumn Header="Сколько раз ссылались"  Width="Auto" DisplayMemberBinding="{Binding Path=TimesCited}"></GridViewColumn>
+                            <GridViewColumn Header="Год издания"  Width="Auto" DisplayMemberBinding="{Binding Path=PublishYear}"></GridViewColumn>
                             <GridViewColumn Header="ISSN/ISBN" DisplayMemberBinding="{Binding Path=ISSN_ISBN}"></GridViewColumn>
-    
+                            <GridViewColumn Header="Место работы автора"  Width="Auto" DisplayMemberBinding="{Binding Path=AuthorAdress}"></GridViewColumn>
+                            <GridViewColumn Header="Почта автора"  Width="Auto" DisplayMemberBinding="{Binding Path=AuthorEmail}"></GridViewColumn>
+                            <GridViewColumn Header="Издательство"  Width="Auto" DisplayMemberBinding="{Binding Path=Publisher}"></GridViewColumn>
+                            <GridViewColumn Header="Издательство (город)"  Width="Auto" DisplayMemberBinding="{Binding Path=PublisherCity}"></GridViewColumn>
+                            <GridViewColumn Header="Издательство (Адрес)"  Width="Auto" DisplayMemberBinding="{Binding Path=PublisherAddress}"></GridViewColumn>
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>
@@ -67,30 +72,32 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Margin="79,9,79,10" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16">Информация oб Авторе</TextBlock>
-                
+
                 <TextBlock Margin="49,12,34.166,12" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">ФИО Автора</TextBlock>
-                <TextBox Margin="5" Grid.Row="1" Grid.Column="1" DataContext="" Text="{Binding AuthorName {Source Author}}"></TextBox>
-                
+                <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding Path=AuthorName}"></TextBox>
+
                 <TextBlock Margin="45,12,30.166,12" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Адрес работы</TextBlock>
-                <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding Path=ModelNumber}"></TextBox>
+                <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding Path=AuthorAdress}"></TextBox>
                 
                 <TextBlock Margin="31,12,15.166,12" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Электронная почта</TextBlock>
-                <TextBox Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding Path=Cost}"></TextBox>
+                <TextBox Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding Path=AuthorEmail}"></TextBox>
 
                 <TextBlock Margin="57,10,56,8" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="22" TextAlignment="Center">Информация oб Издательстве</TextBlock>
                 <TextBlock Margin="47,12,31.166,12" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Издательство</TextBlock>
                 <TextBox Margin="5" Grid.Row="5" Grid.Column="1" Text="{Binding Path=Publisher}"></TextBox>
                 
                 <TextBlock Margin="30,12,14.166,12" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Город издательства</TextBlock>
-                <TextBox Margin="5" Grid.Row="6" Grid.Column="1" Text="{Binding Path=AuthorName}"></TextBox>
+                <TextBox Margin="5" Grid.Row="6" Grid.Column="1" Text="{Binding Path=PublisherCity}"></TextBox>
                 
                 <TextBlock Margin="30,12,15.166,11" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Адрес издательства</TextBlock>
-                <TextBox Margin="5" Grid.Row="7" Grid.Column="1" Text="{Binding Path=AuthorName}"></TextBox>
+                <TextBox Margin="5" Grid.Row="7" Grid.Column="1" Text="{Binding Path=PublisherAddress}"></TextBox>
                 
 
                 <TextBlock Margin="66,9,67,9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="22" TextAlignment="Center" Grid.Column="2">Информация o публикации</TextBlock>
                 <TextBlock Margin="38,12" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Тип Публикации</TextBlock>
-                <ComboBox Margin="5" Grid.Row="1" Grid.Column="4" Text="{Binding Path=PublicationType}"></ComboBox>
+                <ComboBox Margin="5" Grid.Row="1" Grid.Column="4" Text="{Binding Path=PublicationType}">
+                    
+                </ComboBox>
                 
                 <TextBlock Margin="22,12" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Название Публикации</TextBlock>
                 <TextBox Margin="5" Grid.Row="2" Grid.Column="4" Text="{Binding Path=Title}"></TextBox>
