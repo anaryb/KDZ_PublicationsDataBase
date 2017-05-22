@@ -93,18 +93,13 @@ namespace PublicationsDatabase
 
         private void SaveData()
         {
-            using (FileStream fs = new FileStream(FileName, FileMode.Append))
-            
+            foreach (var user in _users)
             {
-                foreach (var user in _users)
+                using (StreamWriter sw = new StreamWriter(FileName))
                 {
-                    using (StreamWriter sw = new StreamWriter(fs))
-                    {
-                        var hash = CalculateHash(user.UserPassword);
-                        //Сдлать так, чтобы при каждом новом заходе в программу добавлялись новые пароли и юзеры
-                        sw.WriteLine($"{user.UserName}:{hash}");
-                    }
-                    
+                    var hash = CalculateHash(user.UserPassword);
+                    //Сдлать так, чтобы при каждом новом заходе в программу добавлялись новые пароли и юзеры
+                    sw.WriteLine($"{user.UserName}:{hash}");
                 }
             }
         }
@@ -120,12 +115,16 @@ namespace PublicationsDatabase
                     while (!sr.EndOfStream)
                     {
                         var line = sr.ReadLine();
-                        var parts = line.Split(':');
-                        if (parts.Length == 2)
-                        {
-                            Users u;
-                            u = new Users(parts[0], parts[1]);
-                        }
+
+                            var parts = line.Split(':');
+                            if (parts.Length == 2)
+                            {
+                                Users u;
+                                u = new Users(parts[0], parts[1]);
+                                _users.Add(u);
+                            }
+                        
+                      
                     }
                 }
             }
@@ -133,10 +132,6 @@ namespace PublicationsDatabase
             {
                 // Файла с данными нет, создаем обычный пароль и логин
                 _users.Add(new Users("NastyaAdmin", "admin"));
-            }
-            catch
-            {
-                MessageBox.Show("Ошибка чтения из файла");
             }
         }
 

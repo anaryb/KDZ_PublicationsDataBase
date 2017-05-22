@@ -120,23 +120,21 @@ namespace PublicationsDatabase
             _publication = new Publications(comboBoxPublicationType.Text, textBoxTitle.Text, _auth.AuthorName, CitedReferences, TimesCited, PublishYear, textBoxISSN_ISBN.Text, _auth.AuthorAdress, _auth.AuthorEmail, _publish.Publisher, _publish.PublisherCity, _publish.PublisherAddress);
             _publications.Add(_publication); 
             SaveDataPubl();
-
+            Pages.AllPublicationsPage.RefreshListView();
             NavigationService.Navigate(Pages.MainDatabasePage);
+            
 
         }
         private void SaveDataPubl()
         {
-            using (FileStream fs = new FileStream("Publications.txt", FileMode.Append))
-            {
+
                 foreach (Publications publ in _publications)
                 {
-                    using (StreamWriter swpub = new StreamWriter(fs))
+                    using (StreamWriter swpub = new StreamWriter("Publications.txt"))
                     {
                         swpub.WriteLine($"{publ.PublicationType}:{publ.Title}:{publ.AuthorName}:{publ.CitedReferences}:{publ.TimesCited}:{publ.PublishYear}:{publ.ISSN_ISBN}:{publ.AuthorAdress}:{publ.AuthorEmail}:{publ.Publisher}:{publ.PublisherCity}:{publ.PublisherAddress}");
                     }
                 }
-                
-            }
 
             
             /*IFormatter formatterPublic = new BinaryFormatter();

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using NLog;
 
 namespace PublicationsDatabase
 {
@@ -23,6 +24,7 @@ namespace PublicationsDatabase
     /// </summary>
     public partial class AllPublicationsPage : Page
     {
+        Logger logger = LogManager.GetCurrentClassLogger();
         List<Publications> _pubs = new List<Publications>();
         Publications pub;
         
@@ -35,6 +37,7 @@ namespace PublicationsDatabase
         public AllPublicationsPage()
         {
             InitializeComponent();
+            //LoadData();
 
         }
         
@@ -62,33 +65,24 @@ namespace PublicationsDatabase
             streamPublish.Close();
             publishs = objPublish;
             _publish.Add(publishs);*/
-
-            publicationsList.ItemsSource = null;
             LoadData();
-            
-            publicationsList.ItemsSource = _pubs;
 
-
-
-
+            RefreshListView();
+            logger.Trace(" ");
 
 
         }
 
         private void SaveDataPublList()
         {
-            using (FileStream fs = new FileStream("Publications.txt", FileMode.Create))
-            {
+
                 foreach (Publications publ in _pubs)
                 {
-                    using (StreamWriter swpub = new StreamWriter(fs))
+                    using (StreamWriter swpub = new StreamWriter("Publications.txt"))
                     {
                         swpub.WriteLine($"{publ.PublicationType}:{publ.Title}:{publ.AuthorName}:{publ.CitedReferences}:{publ.TimesCited}:{publ.PublishYear}:{publ.ISSN_ISBN}:{publ.AuthorAdress}:{publ.AuthorEmail}:{publ.Publisher}:{publ.PublisherCity}:{publ.PublisherAddress}");
                     }
                 }
-            
-                
-            }
         }
 
         private void LoadData()
@@ -100,18 +94,19 @@ namespace PublicationsDatabase
                     while (!sr.EndOfStream)
                     {
                         var line = sr.ReadLine();
-                        if(line == "")
-                        {
-                            MessageBox.Show("Пожалуйста добавьте публикацию");
-                            NavigationService.Navigate(Pages.NewPublAboutAuthor); 
-                        }
-                        var parts = line.Split(':');
-                        if (parts.Length == 12)
-                        {
-                            Publications p = new Publications(parts[0], parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]), parts[6], parts[7], parts[8], parts[9], parts[10], parts[11]);
-                            _pubs.Add(p);
 
-                        }
+                            if (line == "")
+                            {
+                                MessageBox.Show("Пожалуйста добавьте публикацию");
+                                NavigationService.Navigate(Pages.NewPublAboutAuthor);
+                            }
+                            var parts = line.Split(':');
+                            if (parts.Length == 12)
+                            {
+                                Publications p = new Publications(parts[0], parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]), parts[6], parts[7], parts[8], parts[9], parts[10], parts[11]);
+                                _pubs.Add(p);
+
+                            }
                     }
                 }
             }
@@ -136,9 +131,21 @@ namespace PublicationsDatabase
         {
             _pubs.Remove((Publications)publicationsList.SelectedItem);
             SaveDataPublList();
+            RefreshListView();
+
+
+        }
+
+        public void RefreshListView()
+        {
             publicationsList.ItemsSource = null;
             publicationsList.ItemsSource = _pubs;
+        }
 
+        private void buttonSaveChangedInfo_Click(object sender, RoutedEventArgs e)
+        {
+            SaveDataPublList();
+            MessageBox.Show("Ваши данные успешно изменены!");
         }
     }
 }

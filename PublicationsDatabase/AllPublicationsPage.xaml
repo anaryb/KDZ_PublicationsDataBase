@@ -78,41 +78,46 @@
 
                 <TextBlock Margin="45,12,30.166,12" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Адрес работы</TextBlock>
                 <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding Path=AuthorAdress}"></TextBox>
-                
+
                 <TextBlock Margin="31,12,15.166,12" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Электронная почта</TextBlock>
                 <TextBox Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding Path=AuthorEmail}"></TextBox>
 
                 <TextBlock Margin="57,10,56,8" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="22" TextAlignment="Center">Информация oб Издательстве</TextBlock>
                 <TextBlock Margin="47,12,31.166,12" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Издательство</TextBlock>
                 <TextBox Margin="5" Grid.Row="5" Grid.Column="1" Text="{Binding Path=Publisher}"></TextBox>
-                
+
                 <TextBlock Margin="30,12,14.166,12" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Город издательства</TextBlock>
                 <TextBox Margin="5" Grid.Row="6" Grid.Column="1" Text="{Binding Path=PublisherCity}"></TextBox>
-                
+
                 <TextBlock Margin="30,12,15.166,11" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Адрес издательства</TextBlock>
                 <TextBox Margin="5" Grid.Row="7" Grid.Column="1" Text="{Binding Path=PublisherAddress}"></TextBox>
-                
+
 
                 <TextBlock Margin="66,9,67,9" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="22" TextAlignment="Center" Grid.Column="2">Информация o публикации</TextBlock>
                 <TextBlock Margin="38,12" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Тип Публикации</TextBlock>
                 <ComboBox Margin="5" Grid.Row="1" Grid.Column="4" Text="{Binding Path=PublicationType}">
-                    
+                    <TextBlock>J - Journal</TextBlock>
+                    <TextBlock>B - Book</TextBlock>
+                    <TextBlock>S - Series</TextBlock>
+                    <TextBlock>P - Patent</TextBlock>
                 </ComboBox>
-                
+
                 <TextBlock Margin="22,12" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Название Публикации</TextBlock>
                 <TextBox Margin="5" Grid.Row="2" Grid.Column="4" Text="{Binding Path=Title}"></TextBox>
-                
+
                 <TextBlock Margin="31,12,30,12" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Количество ссылок</TextBlock>
                 <TextBox Margin="5" Grid.Row="3" Grid.Column="4" Text="{Binding Path=CitedReferences}"></TextBox>
-                
+
                 <TextBlock Margin="20,12" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Сколько раз ссылались</TextBlock>
                 <TextBox Margin="5" Grid.Row="4" Grid.Column="4" Text="{Binding Path=TimesCited}"></TextBox>
-                
+
                 <TextBlock Margin="21,12,20,12" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">ISSN/ISBN Публикации</TextBlock>
                 <TextBox Margin="5" Grid.Row="5" Grid.Column="4" Text="{Binding Path=ISSN_ISBN}"></TextBox>
-                
+
                 <TextBlock Margin="50,12" Grid.Row="6" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center">Год издания</TextBlock>
                 <TextBox Margin="5" Grid.Row="6" Grid.Column="4" Text="{Binding Path=PublishYear}"></TextBox>
+
+                <Button x:Name="buttonSaveChangedInfo" Content="Сохранить Изменения" Margin="103,10,103,7" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="7" Click="buttonSaveChangedInfo_Click"/>
             </Grid>
         </Border>
     </Grid>
