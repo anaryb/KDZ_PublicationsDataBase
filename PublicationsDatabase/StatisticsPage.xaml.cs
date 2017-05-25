@@ -34,12 +34,6 @@ namespace PublicationsDatabase
             int alltime = 0;
 
             
-            /*
-            AllPubltextBox.Text = allPublCount;
-            AllTimesCited.Text = allTimesCited;
-            TimesCitedPerPubl.Text = TCperP;
-            */
-
             AllPubltextBox.IsReadOnly = true;
             AllTimesCited.IsReadOnly = true;
             TimesCitedPerPubl.IsReadOnly = true;
@@ -53,10 +47,6 @@ namespace PublicationsDatabase
             if (alltime != 0) citeperp = (double)alltime/ (double)publ;
             else citeperp = 0;
             TimesCitedPerPubl.Text=citeperp.ToString();
-
-            //      MessageBox.Show(_pubsInfo.Count.ToString());
-
-
 
         }
 
@@ -78,16 +68,26 @@ namespace PublicationsDatabase
                 get { return year; }
                 set { year = value; }
             }
+
+            public int count;
             public int Count
             {
                 get { return count; }
                 set { count = value; }
             }
-            public int count;
-            public Stats (int y, int c)
+            public int timescited;
+            public int TimesCited
+            {
+                get { return timescited; }
+                set { timescited = value; }
+            }
+            public Stats (int y, int c, int tc)
             {
                 year = y;
                 count = c;
+                timescited = tc;
+
+
             }
             public void Grow()
             {
@@ -97,28 +97,36 @@ namespace PublicationsDatabase
         }
         private void buttonYearInfo_Click(object sender, RoutedEventArgs e)
         {
-            int countyear = 0;
             _pubsInfo.Sort((pub1, pub2) => pub1.PublishYear.CompareTo(pub2.PublishYear));
             List<Stats> PubCount=new List<Stats>();
             var YearGroups = from pub in _pubsInfo
                              group pub by pub.PublishYear;
             int i = 0;
+            int timesc = 0;
             foreach (IGrouping<int, Publications> g in YearGroups)
             {
                 
+
                 try
                 {
-                    PubCount.Add(new Stats((int)g.Key, 0));
+                    PubCount.Add(new Stats((int)g.Key, 0, 0));
                     foreach (var t in g)
                     {
+                        timesc += t.TimesCited;
+                        PubCount[i].TimesCited = timesc;
                         PubCount[i].Grow();
+                        
                     }
+                    timesc = 0;
+                    
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+
                 i++;
+                
             }
            
             StatisticsList.ItemsSource = null;

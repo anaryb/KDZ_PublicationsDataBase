@@ -30,8 +30,6 @@ namespace PublicationsDatabase
         {
             get { return _pubs; }
         }
-        int[] _PubsInYears = new int[2018];
-
         List<Publications> _pubsPerYear = new List<Publications>();
 
         List<Authors> _auth = new List<Authors>();
@@ -91,25 +89,16 @@ namespace PublicationsDatabase
                 { 
                     foreach (Publications publ in _pubs)
                     {
-                        swpub.WriteLine($"{publ.PublicationType}:{publ.Title}:{publ.AuthorName}:{publ.CitedReferences}:{publ.TimesCited}:{publ.PublishYear}:{publ.ISSN_ISBN}:{publ.AuthorAdress}:{publ.AuthorEmail}:{publ.Publisher}:{publ.PublisherCity}:{publ.PublisherAddress}:{publ.PublMagazine}");
+                        swpub.WriteLine($"{publ.PublicationType}^{publ.Title}^{publ.AuthorName}^{publ.CitedReferences}^{publ.TimesCited}^{publ.PublishYear}^{publ.ISSN_ISBN}^{publ.AuthorAdress}^{publ.AuthorEmail}^{publ.Publisher}^{publ.PublisherCity}^{publ.PublisherAddress}^{publ.PublMagazine}");
                     }
                 }
             }
             logger.Trace("Информация в текстовом документе сохранена!");
 
         }
-        private void ArrayNull()
-        {
-            for (int i = 0; i < 2018; i++)
-                _PubsInYears[i] = 0;
-        }
-
-
 
         private void LoadData()
         {
-            ArrayNull();
-
             try
             {
                 _pubs = new List<Publications>();
@@ -122,30 +111,19 @@ namespace PublicationsDatabase
                         while (!sr.EndOfStream)
                         {
                             var line = sr.ReadLine();
-                            var parts = line.Split(':');
-                            Publications p = new Publications(parts[0], parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]), parts[6], parts[7], parts[8], parts[9], parts[10], parts[11], parts[12]);
-                            allPublCount ++;
-                            allTimesCitedCount += int.Parse(parts[4]);
-                            
-                            _pubs.Add(p);
-                            
+                            var parts = line.Split('^');
+                            if (parts.Length == 13)
+                            {
+                                Publications p = new Publications(parts[0], parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]), parts[6], parts[7], parts[8], parts[9], parts[10], parts[11], parts[12]);
+
+                                _pubs.Add(p);
+                            }
+                          
                             
                         }
                         sr.Close();
                     }
                     fs.Close();
-                }
-                Pages.StatisticsPage.AllPublCount(allPublCount);
-                Pages.StatisticsPage.TimesCitedCount(allTimesCitedCount);
-
-                for (int i = 0; i<2018; i++)
-                {
-                    if (_PubsInYears[i] !=0)
-                    {
-                        Publications p = new Publications(i, _PubsInYears[i]);
-                        _pubsPerYear.Add(p);
-                     //   Pages.StatisticsPage.StatYearPub(p);
-                    }
                 }
 
 
@@ -229,7 +207,7 @@ namespace PublicationsDatabase
                                 MessageBox.Show("Пожалуйста нет ни одной публикации. Перенаправление на добавление новой публикации");
                                 NavigationService.Navigate(Pages.NewPublAboutAuthor);
                             }
-                            var parts = line.Split(':');
+                            var parts = line.Split('^');
                             if (parts.Length == 13)
                             {
                                 for (int i = 0; i < parts.Length; i++)

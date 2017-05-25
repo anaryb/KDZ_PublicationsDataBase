@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PublicationsDatabase"
         mc:Ignorable="d"
-        Title="Главное окно" SizeToContent="Height" MinHeight="300" MinWidth="600">
+        Title="Главное окно" SizeToContent="Height" MinHeight="300" MinWidth="400">
     <Grid>
         <Frame x:Name="MainDatabaseFrame" Margin="10, 10, 10, 10"></Frame>
     </Grid>

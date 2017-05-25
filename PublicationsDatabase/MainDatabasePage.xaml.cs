@@ -62,6 +62,7 @@ namespace PublicationsDatabase
                 Pages.AllPublicationsPage.ISSN_ISBNEdit.IsReadOnly = true;
                 Pages.AllPublicationsPage.PublishYearEdit.IsReadOnly = true;
                 Pages.AllPublicationsPage.PublMagazineEdit.IsReadOnly = true;
+                Pages.AllPublicationsPage.PublicationTypeEdit.IsReadOnly = true;
 
                 Pages.AllPublicationsPage.buttonSaveChangedInfo.IsEnabled = false;
                 Pages.AllPublicationsPage.buttonSaveChangedInfo2.IsEnabled = false;

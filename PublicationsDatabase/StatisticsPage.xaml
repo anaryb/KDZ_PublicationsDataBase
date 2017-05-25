@@ -25,6 +25,7 @@
                     <GridView.Columns>
                         <GridViewColumn Header="Год" Width="Auto"  DisplayMemberBinding="{Binding Path=Year}"></GridViewColumn>
                         <GridViewColumn Header="Количество" Width="Auto"  DisplayMemberBinding="{Binding Path=Count}"></GridViewColumn>
+                        <GridViewColumn Header="Количество цитирования" Width="Auto"  DisplayMemberBinding="{Binding Path=TimesCited}"></GridViewColumn>
                      </GridView.Columns>
                 </GridView>
             </ListView.View>

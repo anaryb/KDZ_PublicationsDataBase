@@ -106,11 +106,5 @@ namespace PublicationsDatabase
         {
             buttonAuth.FontSize = 14;
         }
-
-        public void ME(Button b)
-        {
-            b.FontSize = 16;
-        }
-
     }
 }
