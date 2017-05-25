@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using NLog;
 
 
 namespace PublicationsDatabase
@@ -25,6 +26,7 @@ namespace PublicationsDatabase
     {
         const string FileName = "users.txt";
         List<Users> _users = new List<Users>();
+        Logger logger = LogManager.GetCurrentClassLogger();
 
         public RegistrationPage()
         {
@@ -95,13 +97,18 @@ namespace PublicationsDatabase
         {
             foreach (var user in _users)
             {
-                using (StreamWriter sw = new StreamWriter(FileName))
+                using (FileStream fs = new FileStream("users.txt", FileMode.Append))
                 {
-                    var hash = CalculateHash(user.UserPassword);
-                    //Сдлать так, чтобы при каждом новом заходе в программу добавлялись новые пароли и юзеры
-                    sw.WriteLine($"{user.UserName}:{hash}");
+                    using (StreamWriter sw = new StreamWriter(fs))
+                    {
+                        var hash = CalculateHash(user.UserPassword);
+                        //Сдлать так, чтобы при каждом новом заходе в программу добавлялись новые пароли и юзеры
+                        sw.WriteLine($"{user.UserName}:{hash}");
+                        logger.Trace("Сохранение логина и пароля только что зарегистрировавшегося пользователя {0} в файл", user.UserName);
+                    }
                 }
             }
+            
         }
 
 
@@ -116,27 +123,35 @@ namespace PublicationsDatabase
                     {
                         var line = sr.ReadLine();
 
-                            var parts = line.Split(':');
-                            if (parts.Length == 2)
-                            {
-                                Users u;
-                                u = new Users(parts[0], parts[1]);
-                                _users.Add(u);
-                            }
-                        
-                      
+                        var parts = line.Split(':');
+                        if (parts.Length == 2)
+                        {
+                            Users u;
+                            u = new Users(parts[0], parts[1]);
+                            _users.Add(u);
+                        }
                     }
                 }
             }
             catch (FileNotFoundException)
             {
                 // Файла с данными нет, создаем обычный пароль и логин
+                logger.Warn("Файл для записи пользователей users.txt не найден. Создается новый файл и добавляется стандартный логин и пароль");
                 _users.Add(new Users("NastyaAdmin", "admin"));
+
+            }
+            catch (Exception exc)
+            {
+                logger.Fatal(exc.ToString());
             }
         }
 
-           
+        private void GoBackStarWindow_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new StartingWindow();
+            window.Show();
         }
+    }
 
 
     }

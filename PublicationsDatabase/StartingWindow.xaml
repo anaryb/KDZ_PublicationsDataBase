@@ -5,18 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PublicationsDatabase"
         mc:Ignorable="d"
-        Title="StartingWindow" MinHeight="400" MinWidth="550">
+        Title="Начальная страница" SizeToContent="WidthAndHeight" MinHeight="400" MinWidth="550">
 
     <Grid>
-        <StackPanel Orientation="Vertical" Height="100" VerticalAlignment="Bottom" HorizontalAlignment="Center" >
-            <Button x:Name="buttonReg" Content="Зарегистрироваться" MinWidth="100" Margin="10,0,0,5"  Width="190" Height="40" Click="buttonReg_Click"/>
-            <Button x:Name="buttonAuth" Content  ="Авторизация"  MinWidth="100" Margin="10,0,0,5" Width="190" Height="40" Click="buttonAuth_Click"/>
+        <StackPanel Orientation="Vertical" Height="150" VerticalAlignment="Bottom" HorizontalAlignment="Center" >
+            <Button x:Name="buttonGuest" Content="Войти как гость" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MinWidth="100" Margin="10,0,0,5" Width="190" Height="40" Click="buttonGuest_Click" MouseEnter="buttonGuest_MouseEnter" MouseLeave="buttonGuest_MouseLeave"></Button>
+            <Button x:Name="buttonReg" Content="Зарегистрироваться" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MinWidth="100" Margin="10,0,0,5"  Width="190" Height="40" Click="buttonReg_Click" MouseEnter="buttonReg_MouseEnter" MouseLeave="buttonReg_MouseLeave"/>
+            <Button x:Name="buttonAuth" Content  ="Авторизация" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  MinWidth="100" Margin="10,0,0,5" Width="190" Height="40" Click="buttonAuth_Click" MouseEnter="buttonAuth_MouseEnter" MouseLeave="buttonAuth_MouseLeave"/>
+
         </StackPanel>
 
-        <Frame x:Name="Main" Margin="0,0,0,105"/>
-        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextDecorations="{x:Null}" TextAlignment="Center" Margin="70,54,64,194"><Run Text="Добро пожаловать"/><LineBreak/><Run Text="в информационно-аналитическую систему"/><LineBreak/><Run Text="учета научных публикаций"/></TextBlock>
-        <TextBlock FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="141,131,140,169" Width="211" TextAlignment="Center"> Выберите Ваши действия</TextBlock>
-        
+        <Frame x:Name="Main" Margin="0,0,0,155"/>
+        <TextBlock FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Margin="70,54,64,194"><Run Text="Добро пожаловать"/><LineBreak/><Run Text="в информационно-аналитическую систему"/><LineBreak/><Run Text="учета научных публикаций"/></TextBlock>
+        <TextBlock FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="171,176,171,174" Width="200" TextAlignment="Center"> Выберите Ваши действия</TextBlock>
+
 
     </Grid>
 </Window>

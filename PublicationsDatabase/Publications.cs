@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PublicationsDatabase
 {
-    [Serializable]
+
     public class Publications
     {
         private string _publicationType;
@@ -57,6 +57,13 @@ namespace PublicationsDatabase
 
         }
 
+        private string _publMagazine;
+        public string PublMagazine
+        {
+            get { return _publMagazine; }
+            set { _publMagazine = value; }
+        }
+
         private string _authorName;
         public string AuthorName
         {
@@ -99,7 +106,34 @@ namespace PublicationsDatabase
             set { _publisherAddress = value; }
         }
 
-        public Publications(string publicationType, string title, string authorName, int citedReferences, int timesCited, int publishYear, string issn_issbn,  string authorJobAddress, string authorEmail, string publisher, string publisherCity, string publisherAddress )
+        private int _allpublicationsCount;
+        public int AllPublicationsCount
+        {
+            get { return _allpublicationsCount; }
+            set { _allpublicationsCount = value; }
+        }
+
+        private int _allTimesCitedCount;
+        public int AllTimesCitedCount
+        {
+            get { return _allTimesCitedCount; }
+            set { _allTimesCitedCount = value; }
+        }
+
+        private int _pubsPerYear;
+        public int PubsPerYear
+        {
+            get { return _pubsPerYear; }
+            set { _pubsPerYear = value; }
+        }
+
+        public Publications(int publishYear, int pubsperYear)
+        {
+            _publishYear = publishYear;
+            _pubsPerYear = pubsperYear;
+        }
+
+        public Publications(string publicationType, string title, string authorName, int citedReferences, int timesCited, int publishYear, string issn_issbn,  string authorJobAddress, string authorEmail, string publisher, string publisherCity, string publisherAddress, string publMagazine )
         {
             _publicationType = publicationType;
             _title = title;
@@ -113,7 +147,7 @@ namespace PublicationsDatabase
             _publisher = publisher;
             _publisherCity = publisherCity;
             _publisherAddress = publisherAddress;
-
+            _publMagazine = publMagazine;
             
         }
 

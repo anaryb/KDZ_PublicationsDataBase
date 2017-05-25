@@ -52,5 +52,14 @@ namespace PublicationsDatabase
         {
             get { return _allPublicationsPage; }
         }
+
+
+        private static StatisticsPage _statisticsPage = new StatisticsPage(Pages.AllPublicationsPage.TakePub);
+        public static StatisticsPage StatisticsPage
+        {
+            get { return _statisticsPage; }
+            set { _statisticsPage = value; }
+        }
+
     }
 }

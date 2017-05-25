@@ -6,6 +6,7 @@ using System.Windows.Navigation;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using NLog;
 
 namespace PublicationsDatabase
 {
@@ -14,6 +15,7 @@ namespace PublicationsDatabase
     /// </summary>
     public partial class NewPublAboutPubl : Page
     {
+        Logger logger = LogManager.GetCurrentClassLogger();
         const string FileName = "Publications.txt";
         Publications _publication;
         List<Publications> _publications = new List<Publications>();
@@ -76,10 +78,10 @@ namespace PublicationsDatabase
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(textBoxDOI.Text))
+            if (string.IsNullOrWhiteSpace(textBoxPublMagazine.Text))
             {
                 MessageBox.Show("Необходимо ввести DOI");
-                textBoxDOI.Focus();
+                textBoxPublMagazine.Focus();
                 return;
             }
 
@@ -117,24 +119,32 @@ namespace PublicationsDatabase
             }
 
 
-            _publication = new Publications(comboBoxPublicationType.Text, textBoxTitle.Text, _auth.AuthorName, CitedReferences, TimesCited, PublishYear, textBoxISSN_ISBN.Text, _auth.AuthorAdress, _auth.AuthorEmail, _publish.Publisher, _publish.PublisherCity, _publish.PublisherAddress);
+            _publication = new Publications(comboBoxPublicationType.Text, textBoxTitle.Text, _auth.AuthorName, CitedReferences, TimesCited, PublishYear, textBoxISSN_ISBN.Text, _auth.AuthorAdress, _auth.AuthorEmail, _publish.Publisher, _publish.PublisherCity, _publish.PublisherAddress, textBoxPublMagazine.Text);
             _publications.Add(_publication); 
             SaveDataPubl();
+            Pages.AllPublicationsPage.NewPublAdded(_publication);
             Pages.AllPublicationsPage.RefreshListView();
             NavigationService.Navigate(Pages.MainDatabasePage);
+            logger.Trace("Добавлена новая публикация в базу данных");
             
 
         }
         private void SaveDataPubl()
         {
-
-                foreach (Publications publ in _publications)
+            using (FileStream fs = new FileStream("Publications.txt", FileMode.Append))
+            {
+                using (StreamWriter swpub = new StreamWriter(fs))
                 {
-                    using (StreamWriter swpub = new StreamWriter("Publications.txt"))
+                    foreach (Publications publ in _publications)
                     {
-                        swpub.WriteLine($"{publ.PublicationType}:{publ.Title}:{publ.AuthorName}:{publ.CitedReferences}:{publ.TimesCited}:{publ.PublishYear}:{publ.ISSN_ISBN}:{publ.AuthorAdress}:{publ.AuthorEmail}:{publ.Publisher}:{publ.PublisherCity}:{publ.PublisherAddress}");
+                        swpub.WriteLine($"{publ.PublicationType}:{publ.Title}:{publ.AuthorName}:{publ.CitedReferences}:{publ.TimesCited}:{publ.PublishYear}:{publ.ISSN_ISBN}:{publ.AuthorAdress}:{publ.AuthorEmail}:{publ.Publisher}:{publ.PublisherCity}:{publ.PublisherAddress}:{publ.PublMagazine}");
                     }
+                    
                 }
+
+            }
+
+            logger.Trace("Сохранение публикации в текстовый файл");
 
             
             /*IFormatter formatterPublic = new BinaryFormatter();

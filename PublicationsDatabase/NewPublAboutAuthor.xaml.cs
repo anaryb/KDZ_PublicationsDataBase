@@ -26,6 +26,7 @@ namespace PublicationsDatabase
         {
             InitializeComponent();
             authorName.Focus();
+            
         }
 
         private void AuthorPublNext_Click(object sender, RoutedEventArgs e)

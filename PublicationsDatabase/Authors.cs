@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PublicationsDatabase
 {
-    [Serializable]
+
     public class Authors
     {
         private string _authorName;

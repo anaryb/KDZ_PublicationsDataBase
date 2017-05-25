@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using NLog;
 
 namespace PublicationsDatabase
 {
@@ -23,10 +24,14 @@ namespace PublicationsDatabase
     public partial class AuthPage : Page
     {
         List<Users> _users = new List<Users>();
+        Logger logger = LogManager.GetCurrentClassLogger();
+        int i;
+
         public AuthPage()
         {
             InitializeComponent();
             LoadData();
+            
         }
 
 
@@ -39,22 +44,39 @@ namespace PublicationsDatabase
 
         private void LoadData()
         {
-
-            using (var sr = new StreamReader("users.txt"))
+            try
             {
-                while (!sr.EndOfStream)
+                using (StreamReader sr = new StreamReader("users.txt"))
                 {
-                    var line = sr.ReadLine();
-                    var parts = line.Split(':');
-                    if (parts.Length == 2)
+                    while (!sr.EndOfStream)
                     {
-                        Users u;
-                        u = new Users(parts[0], parts[1]);
-                        _users.Add(u);
+                        var line = sr.ReadLine();
+                        var parts = line.Split(':');
+                        if (parts.Length == 2)
+                        {
+                            Users u;
+                            u = new Users(parts[0], parts[1]);
+                            _users.Add(u);
+                        }
                     }
                 }
             }
+            catch (FileNotFoundException)
+            {
+                // Файла с данными нет
+                MessageBox.Show("Еще ни одного пользователя не зарегистрировано! \nПожалуйста зарегистрируйтесь!");
+                logger.Warn("Нет файла users.txt для чтения. Перенаправление на регистрацию");
+                
+
+            }
+            catch (Exception exc)
+            {
+                logger.Fatal(exc.ToString());
+            }
+
         }
+
+ 
 
         private void LoginUser_Click(object sender, RoutedEventArgs e)
         {
@@ -64,22 +86,15 @@ namespace PublicationsDatabase
                 if ((Userlogin.Text == user.UserName) && (CalculateHash(UserPassword.Text) == user.UserPassword))
                 {
                     var w = new MainDatabaseWindow();
-                    w.Show();                    
-                }
-                else
-                {
-                    Userlogin.Clear();
-                    UserPassword.Clear();
-                    MessageBox.Show("Неправильно введены имя пользователя или пароль");
-                }
-                    
+                    w.Show();
+                    logger.Info("Произведен вход пользователя {0}", user.UserName);
+                    i = 1;
+                }                    
             }
+            if (i == 0)
+                MessageBox.Show("Неправильно введен логин/пароль");
 
-            
-
-
-           
-
+            Pages.MainDatabasePage.GuestFunc(0);
             
         }
     }

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:PublicationsDatabase"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="500"
-      Title="MainDatabasePage">
+      Title="Выбор действия">
 
     <Grid>
         <StackPanel Orientation="Horizontal" Margin="0,0,0,10" Height="35" VerticalAlignment="Bottom" HorizontalAlignment="Center" >

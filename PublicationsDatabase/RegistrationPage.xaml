@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:PublicationsDatabase"
       mc:Ignorable="d" 
       d:DesignHeight="350" d:DesignWidth="450"
-      Title="RegistrationPage">
+      Title="Регистрация">
 
     <Grid Background="White" Margin="5 5 5 5">
         <Grid.ColumnDefinitions>
@@ -28,7 +28,7 @@
         <TextBox x:Name="NewUserPasswordConfirm" Grid.Row="2" Grid.Column="1" Height="30" MinWidth="100" Margin="10" TextWrapping="Wrap"/>
         <TextBlock   Grid.Row="2" Grid.Column="0" TextAlignment="Center" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">Подтвердите пароль</TextBlock>
 
-        <Button x:Name="AddNewUser" Grid.Row="3" Grid.Column="1" Content="Зарегистрироваться" MinWidth="110" MaxWidth="120" Margin="62,22,61,21"   MinHeight="30" MaxHeight="50" Click="AddNewUser_Click" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
+        <Button x:Name="AddNewUser" Grid.Row="3" Grid.Column="1" Content="Зарегистрироваться" MinWidth="110" MaxWidth="120" Margin="10,29,158,26"   MinHeight="30" MaxHeight="50" Click="AddNewUser_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Width="122" />
+        <Button x:Name="GoBackStarWindow" Grid.Row="3" Grid.Column="1" Content="Обратно" MinWidth="110" MaxWidth="120" Margin="170,29,10,26"   MinHeight="30" MaxHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" Click="GoBackStarWindow_Click"></Button>
     </Grid>
 </Page>

@@ -1,0 +1,14 @@
+﻿<Window x:Class="PublicationsDatabase.SearchWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PublicationsDatabase"
+        mc:Ignorable="d"
+        Title="Поиск" SizeToContent="WidthAndHeight">
+    <Grid>
+        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Margin="20,25,275,129">Что хотите найти:</TextBlock>
+        <TextBox x:Name="textBoxSearch" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="136,25,56,123" Width="200" ></TextBox>
+        <Button x:Name="buttonSearch" Content="Найти далее" MaxHeight="30" MaxWidth="100" Click="buttonSearch_Click"></Button>
+    </Grid>
+</Window>
